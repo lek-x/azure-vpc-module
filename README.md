@@ -113,13 +113,45 @@ NAT Gateway and Public IP use Standard SKU to support zone redundancy.
 
 NSGs and route tables are created only if corresponding configurations are specified in the subnet block.
 
-## Outputs
-You may optionally expose outputs like:
-
-Virtual Network ID
-
-Subnet IDs
-
-NAT Gateway ID
-
-NSG IDs
+## Outputs Example
+```
+nat_gateway_id  = "/subscriptions/xxxxxxxx/resourceGroups/maingr/providers/Microsoft.Network/natGatewaysvnet1-nat-ngw"
+ + nsg_ids         = {
+     + subnet1 = "/subscriptions/xxxxxxxx/resourceGroups/maingr/providers/Microsoft.NetworknetworkSecurityGroups/subnet1"
+     + subnet2 = "/subscriptions/xxxxxxxx/resourceGroups/maingr/providers/Microsoft.NetworknetworkSecurityGroups/subnet2"
+   }
+ + public_ip_id    = "xxxx.xxx.xxx.xxx"
+ + route_table_ids = {}
+ + vnet_subnet     = [
+     + {
+         + address_prefixes                              = [
+             + "10.0.1.0/24",
+           ]
+         + default_outbound_access_enabled               = true
+         + delegation                                    = []
+         + id                                            = "/subscriptions/xxxxxxxx/resourceGroupsmaingr/providers/Microsoft.Network/virtualNetworks/vnet1/subnets/subnet1"
+         + name                                          = "subnet1"
+         + private_endpoint_network_policies             = "Enabled"
+         + private_link_service_network_policies_enabled = true
+         + route_table_id                                = ""
+         + security_group                                = "/subscriptions/xxxxxxxx/resourceGroupsmaingr/providers/Microsoft.Network/networkSecurityGroups/subnet1"
+         + service_endpoint_policy_ids                   = []
+         + service_endpoints                             = []
+       },
+     + {
+         + address_prefixes                              = [
+             + "10.0.2.0/24",
+           ]
+         + default_outbound_access_enabled               = true
+         + delegation                                    = []
+         + id                                            = "/subscriptions/xxxxxxxx/resourceGroupsmaingr/providers/Microsoft.Network/virtualNetworks/vnet1/subnets/subnet2"
+         + name                                          = "subnet2"
+         + private_endpoint_network_policies             = "Enabled"
+         + private_link_service_network_policies_enabled = true
+         + route_table_id                                = ""
+         + security_group                                = "/subscriptions/xxxxxxxx/resourceGroupsmaingr/providers/Microsoft.Network/networkSecurityGroups/subnet2"
+         + service_endpoint_policy_ids                   = []
+         + service_endpoints                             = []
+       },
+   ]
+```
