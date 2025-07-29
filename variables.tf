@@ -13,9 +13,8 @@ variable "resource_group_name" {
 variable "location" {
   description = "The AZURE resource group location"
   type        = string
-  default     = "Germany West Central"
+  default     = "westeurope"
 }
-
 
 variable "vnet_cfg" {
   description = "The CIDR range for the VPC network."
@@ -59,7 +58,7 @@ variable "vnet_cfg" {
     }
     subnets = [
       {
-        name                              = "subnet1"
+        name                              = "subnet-public"
         address_prefixes                  = ["10.0.1.0/24"]
         default_outbound_access_enabled   = true
         private_endpoint_network_policies = "Enabled"
@@ -93,7 +92,7 @@ variable "vnet_cfg" {
         }
       },
       {
-        name                              = "subnet2"
+        name                              = "subnet-private"
         address_prefixes                  = ["10.0.2.0/24"]
         default_outbound_access_enabled   = true
         private_endpoint_network_policies = "Enabled"
